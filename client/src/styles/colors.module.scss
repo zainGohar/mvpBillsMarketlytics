@@ -1,0 +1,57 @@
+$light-colors: (
+  sidebar: hsl(204, 15%, 13%),
+  background: hsl(210, 40%, 96%),
+  box: hsl(0, 0%, 100%),
+  header: hsl(0, 0%, 100%),
+  button: hsl(207, 68%, 41%),
+  button_light: hsl(207, 90%, 50%),
+  text_secondary: hsla(0, 0%, 0%, 0.5),
+  text: hsl(207, 16%, 11%),
+  text_light: hsl(0, 0%, 100%),
+  scroll_bar: hsl(240, 3%, 81%),
+  input: hsl(0, 0%, 100%),
+  hover: hsl(207, 68%, 32%),
+  placeholder: hsl(240, 3%, 81%),
+  border: hsl(240, 3%, 90%),
+  alert_primary: hsl(195, 100%, 90%),
+  alert_secondary: hsl(180, 2%, 89%),
+  alert-warning: hsl(60, 100%, 80%),
+  alert_error: hsl(0, 100%, 65%),
+  alert_success: hsla(120, 100%, 49%, 0.725),
+  border_light: hsla(0, 0%, 83%, 0.312),
+  //========== roadmap =================
+  purple: hsl(283, 36%, 50%),
+  purple_light: hsl(283, 82%, 80%),
+  blue: hsl(237, 46%, 54%),
+  blue_light: hsl(237, 98%, 76%),
+  green: hsl(158, 62%, 36%),
+  green_light: hsl(158, 70%, 82%),
+);
+
+$dark-colors: (
+  sidebar: #111c44,
+  background: #0b1437,
+  text_secondary: hsla(0, 0%, 100%, 0.5),
+  box: #1b2559,
+
+  header: #111c44,
+  button: hsl(262, 82%, 58%),
+  text: #ffffff,
+  text_light: #181d21,
+
+  scroll_bar: #cccccf,
+  input: #1b2559,
+  hover: hsl(262, 82%, 40%),
+  placeholder: #cccccf,
+  border: #bababe27,
+);
+
+:export {
+  @each $name, $variable in $light-colors {
+    #{$name}: $variable;
+  }
+
+  @each $name, $variable in $dark-colors {
+    #{'dark-' + $name}: $variable;
+  }
+}

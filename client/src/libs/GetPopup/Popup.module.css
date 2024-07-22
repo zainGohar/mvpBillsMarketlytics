@@ -1,0 +1,273 @@
+.popup {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  /* The actual popup */
+  /* Popup arrow */
+  /* Toggle this class - hide and show the popup */
+}
+.popup .popuptext {
+  background-color: #fa405c;
+  color: #ffecef;
+  text-align: center;
+  border-radius: 8px;
+  padding: 7px;
+  font-weight: 400;
+  font-size: 15px;
+  position: absolute;
+  z-index: 1;
+  bottom: 12px;
+  opacity: 85%;
+}
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 40%;
+  margin-left: -70px;
+  border-width: 15px;
+  border-style: solid;
+  border-color: #fa405c transparent transparent transparent;
+}
+.popup .Gpopuptext {
+  padding: 7px;
+  position: absolute;
+  z-index: 1;
+  bottom: 1px;
+}
+.popup .Gpopuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #3b3b39 transparent transparent transparent;
+}
+.popup .Ipopuptext {
+  padding: 7px;
+  position: absolute;
+  z-index: 1;
+  bottom: -50px;
+}
+.popup .Ipopuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 180px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #3b3b39 transparent transparent transparent;
+}
+.popup .show {
+  visibility: visible;
+  animation: fadeIn 1s;
+}
+
+.popup {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  /* The actual popup */
+  /* Popup arrow */
+  /* Toggle this class - hide and show the popup */
+}
+.popup .Accounttext {
+  border: 1px solid rgb(209, 209, 209);
+  background-color: #ffffff;
+  color: grey;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 15px;
+  position: absolute;
+  z-index: 1;
+  bottom: -105px;
+}
+.popup .Accounttext::after {
+  content: "";
+  position: absolute;
+  top: -46%;
+  left: 60%;
+  margin-left: -100px;
+  border-width: 18px;
+  transform: rotate(180deg);
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+}
+.popup .Accounttext::before {
+  content: "";
+  position: absolute;
+  top: -51%;
+  left: 60%;
+  transform: rotate(180deg);
+  margin-left: -102px;
+  border-width: 20px;
+  border-style: solid;
+  border-color: rgb(209, 209, 209) transparent transparent transparent;
+}
+.popup .show {
+  visibility: visible;
+  animation: fadeIn 1s;
+}
+.popup .AccountBtn2 {
+  outline: none;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  color: rgb(43, 103, 119);
+  padding: 5px 10px;
+}
+.popup .AccountBtn2:hover {
+  background-color: rgb(43, 103, 119);
+  color: #ffffff;
+}
+.popup .AccountBtn1 {
+  outline: none;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  color: rgb(43, 103, 119);
+  padding: 5px 10px;
+}
+.popup .AccountBtn1:hover {
+  background-color: rgb(43, 103, 119);
+  color: #ffffff;
+}
+.popup .Cancel_Btn {
+  position: absolute;
+  right: 10px;
+}
+
+.Tax {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  /* The actual popup */
+  /* Popup arrow */
+  /* Toggle this class - hide and show the popup */
+}
+.Tax .Tax_Text {
+  border: 2px solid rgba(0, 0, 0, 0.096);
+  border-radius: 10px;
+  color: grey;
+  text-align: center;
+  font-weight: 400;
+  font-size: 15px;
+  position: absolute;
+  z-index: 1;
+}
+.Tax .Tax_Text .Tax_Outer {
+  background-color: white;
+  border: "none";
+  border-radius: 10px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.Tax .Tax_Text .Tax_Outer .Tax_Head {
+  padding: 15px;
+  border: none;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: #2b6777;
+  display: flex;
+  justify-content: start;
+}
+.Tax .Tax_Text .Tax_Outer .Tax_Head span {
+  font-size: 24px;
+}
+.Tax .Tax_Text .Tax_Outer .Apply_Tax_To_All {
+  padding: 15px 25px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-left: none;
+  border-right: none;
+  font-size: 20px;
+}
+.Tax .Tax_Text .Tax_Outer .tax_Cancel_Btn {
+  font-size: 20px;
+  height: 50px;
+  margin-top: 10px;
+}
+.Tax .Tax_Text .Tax_Outer .tax_Cancel_Btn:hover {
+  border: 2.5px solid rgba(0, 0, 0, 0.25);
+}
+.Tax .Tax_Text .Tax_Outer .tax_Apply_Btn {
+  background-color: #2b6777;
+  color: white;
+  margin: 10px;
+  padding: 10px 20px;
+}
+.Tax .Tax_Text .Tax_Outer .tax_Apply_Btn:hover {
+  background-color: #204e5a;
+}
+.Tax .Tax_Text .Tax_Box {
+  position: relative;
+  margin-top: 40px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.Tax .Tax_Text .tax_Add_Btn {
+  border: 1px dashed rgba(0, 0, 0, 0.25);
+  margin: 20px 20px;
+  box-shadow: none;
+}
+.Tax .Tax_Text .tax_Add_Btn:hover {
+  background-color: rgb(247, 247, 247);
+}
+.Tax .Tax_Text .Tax_Table {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+.Tax .Tax_Text .Tax_Table .tax_Remove_Btn {
+  padding: 0;
+  box-shadow: none;
+  color: grey;
+}
+.Tax .Tax_Text .Tax_Table .tax_Remove_Btn:hover {
+  color: black;
+}
+.Tax .Tax_Text::after {
+  content: "";
+  position: absolute;
+  top: -8%;
+  left: 90%;
+  margin-left: -100px;
+  border-width: 18px;
+  transform: rotate(180deg);
+  border-style: solid;
+  border-color: #2b6777 transparent transparent transparent;
+}
+.Tax .Tax_Text::before {
+  content: "";
+  position: absolute;
+  top: -9%;
+  left: 90%;
+  transform: rotate(180deg);
+  margin-left: -102px;
+  border-width: 20px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.096) transparent transparent transparent;
+}
+.Tax .show {
+  visibility: visible;
+  animation: fadeIn 1s;
+}
+.Tax .Cancel_Btn {
+  position: absolute;
+  right: 10px;
+}/*# sourceMappingURL=Popup.module.css.map */

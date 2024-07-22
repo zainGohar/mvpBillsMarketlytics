@@ -1,0 +1,132 @@
+
+    
+
+-------------------- (https://shipgpt.ai) --------------------
+
+Home
+Demo
+Pricing
+Documentation
+Coming Soon
+Ship AI & ship it fast
+Turn your apps into AI apps or build a new one
+GET IT NOW
+
+Files
+Chat
+Folder
+Youtube
+Website
+Video
+Audio
+
+Drag and Drop files here or click to select files
+Supported file type .doc, txt, .csv, .pdf
+You Can Build The Following Apps.
+Integrate AI Into Apps/Websites: Use Cases
+Conversational Chatbot for your document files (.pdf, .csv, .docs, .epub, .txt)
+
+Conversational Chatbot for Audio files
+Conversational Chatbot for Video files
+Conversational Chatbot for YouTube
+Conversational Chatbot for Websites
+
+Contact to include your custom use case in your set of APIs
+You will be saving approx $10K
+Starting at only
+$300/LifeTime
+GET STARTED
+Save 60+ Hours:
+Stop procrastination, Ship AI SaaS right now & save 60+ hours
+Langchain js trainings and deployment
+36 hrs
+20+ Prompts
+4 hrs
+APIs development in Express node js for each usecase
+6 hrs
+Pinecone research & deployment
+6 hrs
+Use Cases development (Youtube, Audios, Videos, Websites)
+12 hrs
+AWS(2 hrs+) Optional
+2 hrs
+Tech Stack
+Not a single deprecated library. We provide updates on daily basis
+LLM Libraries
+Lanchain Js
+LlamaIndex Coming Soon
+Vector Storages
+PineCone
+Supabase Coming Soon
+Type sense Coming Soon
+API Frameworks
+Node Express Js
+Models
+OPEN AI (gpt-3.5-turbo, gpt-4)
+Llama2 Coming Soon
+Falcon Coming Soon
+Storages
+AWS ↔ Optional
+
+No Third party or licenses libraries or APIs are used in these APIs
+We use libraries which are open source and easy to maintain
+Why Shipgpt?
+Don’t hire full stackers with $30-$60 / hr to write AI logics for you, we got it covered for you
+Pay Once And Get Updates For Life TimeGET IT NOW
+We want you to ship AI & ship it fast
+
+Pricing Plans
+Two Plans, pay once and get codebase of your AI for life time
+
+BASIC
+$299/Life Time
+Updates for 12 months
+Any 3 APIs/Use Cases
+Codebase
+Email Support
+SELECT PLAN
+
+STANDARD
+$899/Life Time
+Continuous Updates for LifeTime
+All Apis
+Codebase
+Email Support
+Live On Call Support - 4hrs/Month for first 12 months
+SELECT PLAN
+
+Contact
+to include your custom use case in your set of APIs Provide email in here.
+Frequently Asked Questions
+Haven’t got your answer? Contact our support now
+How do permissions work in Google Play Instant?
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. incididunt ut labore et dolore magna aliqua. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. incididunt ut labore et dolore magna aliqua.
+Is Smart Lock required for instant apps?
+Can I have multiple activities in a single feature?
+Can I share resources between features?
+Is multidex supported for instant apps?
+Can I share resources between features?
+Amazing Team of AI devs
+We are the makers ofchatdox, chatwebby and created 100’s of use cases in AI. Building and shipping AI products in every 2 weeks.Our discord servers are live 
+and we are ready to convert your websites and apps into AI apps.
+CONTACT US ON
+Ship AI & ship it fast! Turn your apps into AI apps or build a new one.
+Company
+Pricing
+Documentation
+Coming Soon
+Support
+FAQ's
+Privacy Policy
+Contact
+Email: team@shipgpt.ai
+Copyright © 2023 ShipGPT. All rights reserved by ShipGPT
+
+
+    
+
+--------------------------------------------------
+
+
+    

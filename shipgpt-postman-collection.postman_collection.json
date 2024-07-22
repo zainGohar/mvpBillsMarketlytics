@@ -1,0 +1,792 @@
+{
+	"info": {
+		"_postman_id": "19f71272-e341-4071-8d74-a5a2de0afd81",
+		"name": "shipgpt-postman-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19163704",
+		"_collection_link": "https://red-sunset-705458.postman.co/workspace/New-Team-Workspace~d7c32518-5938-44e4-a352-c166b831cdcd/collection/19163704-19f71272-e341-4071-8d74-a5a2de0afd81?action=share&source=collection_link&creator=19163704"
+	},
+	"item": [
+		{
+			"name": "Vectorization",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pinecone-Key",
+						"value": "{{Pinecone-Key}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Environment",
+						"value": "{{Pinecone-Environment}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Index",
+						"value": "{{Pinecone-Index}}",
+						"type": "text"
+					},
+					{
+						"key": "Aws-Access-Key",
+						"value": "{{Aws-Access-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Secret-Key",
+						"value": "{{Aws-Secret-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Bucket-Name",
+						"value": "{{Aws-Bucket-Name}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Region",
+						"value": "{{Aws-Region}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{endpoint}}/file/?openai_key={{openai-key}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"file",
+						""
+					],
+					"query": [
+						{
+							"key": "storage_type",
+							"value": "local/aws",
+							"disabled": true
+						},
+						{
+							"key": "openai_key",
+							"value": "{{openai-key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chat",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pinecone-Key",
+						"value": "{{Pinecone-Key}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Environment",
+						"value": "{{Pinecone-Environment}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Index",
+						"value": "{{Pinecone-Index}}",
+						"type": "text"
+					},
+					{
+						"key": "Aws-Access-Key",
+						"value": "{{Aws-Access-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Secret-Key",
+						"value": "{{Aws-Secret-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Bucket-Name",
+						"value": "{{Aws-Bucket-Name}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Region",
+						"value": "{{Aws-Region}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "openai-key",
+						"value": "{{openai-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"file_id\":\"\",\r\n    \"question\":\"what this document is about?\",\r\n    \"model\":\"gpt-3.5-turbo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/chat",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"chat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Youtube File",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pinecone-Key",
+						"value": "{{Pinecone-Key}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Environment",
+						"value": "{{Pinecone-Environment}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Index",
+						"value": "{{Pinecone-Index}}",
+						"type": "text"
+					},
+					{
+						"key": "Aws-Access-Key",
+						"value": "{{Aws-Access-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Secret-Key",
+						"value": "{{Aws-Secret-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Bucket-Name",
+						"value": "{{Aws-Bucket-Name}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Region",
+						"value": "{{Aws-Region}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"url\":\"\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/youtube?openai_key={{openai-key}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"youtube"
+					],
+					"query": [
+						{
+							"key": "openai_key",
+							"value": "{{openai-key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Web Page",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pinecone-Key",
+						"value": "{{Pinecone-Key}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Environment",
+						"value": "{{Pinecone-Environment}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Index",
+						"value": "{{Pinecone-Index}}",
+						"type": "text"
+					},
+					{
+						"key": "Aws-Access-Key",
+						"value": "{{Aws-Access-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Secret-Key",
+						"value": "{{Aws-Secret-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Bucket-Name",
+						"value": "{{Aws-Bucket-Name}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Region",
+						"value": "{{Aws-Region}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"url\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/web?openai_key={{openai-key}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"web"
+					],
+					"query": [
+						{
+							"key": "openai_key",
+							"value": "{{openai-key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "text file",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pinecone-Key",
+						"value": "{{Pinecone-Key}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Environment",
+						"value": "{{Pinecone-Environment}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Index",
+						"value": "{{Pinecone-Index}}",
+						"type": "text"
+					},
+					{
+						"key": "Aws-Access-Key",
+						"value": "{{Aws-Access-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Secret-Key",
+						"value": "{{Aws-Secret-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Bucket-Name",
+						"value": "{{Aws-Bucket-Name}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Region",
+						"value": "{{Aws-Region}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"text001\",\r\n    \"text_content\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/text?openai_key={{openai-key}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"text"
+					],
+					"query": [
+						{
+							"key": "openai_key",
+							"value": "{{openai-key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "folder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pinecone-Key",
+						"value": "{{Pinecone-Key}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Environment",
+						"value": "{{Pinecone-Environment}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Index",
+						"value": "{{Pinecone-Index}}",
+						"type": "text"
+					},
+					{
+						"key": "Aws-Access-Key",
+						"value": "{{Aws-Access-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Secret-Key",
+						"value": "{{Aws-Secret-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Bucket-Name",
+						"value": "{{Aws-Bucket-Name}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Region",
+						"value": "{{Aws-Region}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"folder_id\": \"folder_id.txt\",\r\n    \"files_to_add\": [\"\"],\r\n    \"files_to_remove\": [],\r\n    \"text_content\": \"\",\r\n    \"storage_type\": \"aws\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/folder?openai_key={{openai-key}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"folder"
+					],
+					"query": [
+						{
+							"key": "openai_key",
+							"value": "{{openai-key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "video",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pinecone-Key",
+						"value": "{{Pinecone-Key}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Environment",
+						"value": "{{Pinecone-Environment}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Index",
+						"value": "{{Pinecone-Index}}",
+						"type": "text"
+					},
+					{
+						"key": "Aws-Access-Key",
+						"value": "{{Aws-Access-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Secret-Key",
+						"value": "{{Aws-Secret-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Bucket-Name",
+						"value": "{{Aws-Bucket-Name}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Region",
+						"value": "{{Aws-Region}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{endpoint}}/video?openai_key={{openai-key}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"video"
+					],
+					"query": [
+						{
+							"key": "openai_key",
+							"value": "{{openai-key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "audio",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Pinecone-Key",
+						"value": "{{Pinecone-Key}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Environment",
+						"value": "{{Pinecone-Environment}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Index",
+						"value": "{{Pinecone-Index}}",
+						"type": "text"
+					},
+					{
+						"key": "Aws-Access-Key",
+						"value": "{{Aws-Access-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Secret-Key",
+						"value": "{{Aws-Secret-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Bucket-Name",
+						"value": "{{Aws-Bucket-Name}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Region",
+						"value": "{{Aws-Region}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{endpoint}}/audio?openai_key={{openai-key}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"audio"
+					],
+					"query": [
+						{
+							"key": "openai_key",
+							"value": "{{openai-key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "image",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Key",
+						"value": "{{Pinecone-Key}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Environment",
+						"value": "{{Pinecone-Environment}}",
+						"type": "text"
+					},
+					{
+						"key": "Pinecone-Index",
+						"value": "{{Pinecone-Index}}",
+						"type": "text"
+					},
+					{
+						"key": "Aws-Access-Key",
+						"value": "{{Aws-Access-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Secret-Key",
+						"value": "{{Aws-Secret-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Bucket-Name",
+						"value": "{{Aws-Bucket-Name}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Region",
+						"value": "{{Aws-Region}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"add_tags\":\"\",\r\n    \"avoid_tags\":\"\",\r\n    \"images\":[]\r\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}/vision?openai_key={{openai-key}}",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"vision"
+					],
+					"query": [
+						{
+							"key": "openai_key",
+							"value": "{{openai-key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete file",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Pinecone-Key",
+						"value": "{{Pinecone-Key}}",
+						"type": "text"
+					},
+					{
+						"key": "Aws-Access-Key",
+						"value": "{{Aws-Access-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Secret-Key",
+						"value": "{{Aws-Secret-Key}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Bucket-Name",
+						"value": "{{Aws-Bucket-Name}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Aws-Region",
+						"value": "{{Aws-Region}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Pinecode-Url",
+						"value": "{{Pinecode-Url}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/delete?file_name=File_Name",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"delete"
+					],
+					"query": [
+						{
+							"key": "file_name",
+							"value": "File_Name"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Pinecone-Key",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Pinecone-Environment",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Pinecone-Index",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Aws-Access-Key",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Aws-Secret-Key",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Aws-Bucket-Name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Aws-Region",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "openai-key",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Pinecode-Url",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

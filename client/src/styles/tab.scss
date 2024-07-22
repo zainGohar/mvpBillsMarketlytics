@@ -1,0 +1,55 @@
+@media (min-width: 768px) and (max-width: 1024px) {
+  //====================== signin ====================
+  .checkbox {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+  }
+
+  //================= roadmap =================
+
+  $spacing: 20px;
+  $bdrs: 6px;
+
+  .timeline-event {
+    flex-direction: column;
+    align-self: center;
+    &__content {
+      width: 100%;
+    }
+
+    &__icon {
+      border-radius: $bdrs $bdrs 0 0;
+      width: 100%;
+      margin: 0;
+      box-shadow: none;
+
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
+    &__date {
+      border-radius: 0;
+      padding: $spacing;
+    }
+
+    &:nth-child(2n + 1) {
+      flex-direction: column;
+      align-self: center;
+
+      .timeline-event-date {
+        border-radius: 0;
+        padding: $spacing;
+      }
+
+      .timeline-event-icon {
+        border-radius: $bdrs $bdrs 0 0;
+        margin: 0;
+      }
+    }
+  }
+
+  //==================== ‼️ 🚫 💀⚡ DO NOT WRITE STYLES OUTSIDE THIS SCOPE ⚡💀 🚫 ‼️ ====================================
+  //==================== ‼️ 🚫 💀⚡ DO NOT WRITE STYLES OUTSIDE THIS SCOPE ⚡💀 🚫 ‼️ ====================================
+}

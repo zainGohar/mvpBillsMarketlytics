@@ -1,0 +1,35 @@
+@import "./colors.module.scss";
+
+// Define default light theme properties
+:root {
+  @each $name, $variable in $light-colors {
+    --#{$name}: #{$variable};
+  }
+}
+
+// Define dark theme properties
+[data-theme="dark"] {
+  @each $name, $variable in $dark-colors {
+    --#{$name}: #{$variable};
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+}
+
+body {
+  background-color: var(--background);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

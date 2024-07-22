@@ -1,0 +1,219 @@
+@import "./variables.module.scss";
+
+@media (max-width: 768px) {
+  //================ mainDrawer ====================================
+  .banner-cancel-button {
+    left: 70px;
+    top: 0px;
+  }
+  .width-desktop-2 {
+    width: 0;
+  }
+  .drawer-margin-desktop {
+    margin-left: 0px;
+  }
+
+  .drawer-margin-mobile {
+    margin-left: 0px;
+  }
+  .mainbtn {
+    position: fixed;
+    left: 25px;
+    top: 2%;
+    text-decoration: none;
+
+    .homebtntext {
+      display: none;
+    }
+  }
+
+  //========================================================
+  //================ signin ================================
+  .box {
+    padding: 20px 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+  }
+  .logo {
+    margin-top: 2em;
+  }
+  .sub-heading {
+    margin: 0px 10px 20px 10px;
+    span {
+      font-size: 16px;
+    }
+  }
+  .cookies-bar {
+    margin: 20px 0;
+    padding-left: 20px;
+    .checkbox {
+      margin-top: -29px;
+      margin-left: -15px;
+    }
+  }
+  .button {
+    margin: 10px 0 5px 0;
+  }
+  .signin {
+    background: linear-gradient(0deg, white 70%, white 30%);
+  }
+
+  .or-border {
+    padding: 15px 0px 5px 0;
+  }
+
+  //========================= pricing ======================
+
+  .pricing-styles {
+    padding: 1rem 2rem;
+    .manage-subscription {
+      flex-direction: column;
+    }
+    .plans-container {
+      display: block;
+      .pricing-card {
+        flex: 1;
+        min-width: calc(33.333% - 10px);
+        width: 100%;
+      }
+    }
+  }
+
+  //========== alert message toast ============
+  // wifi error
+
+  .toast-message {
+    width: calc(100% - 20px);
+  }
+  //====================== header admin =========
+  .admin-header {
+    padding: 0 20px;
+  }
+  .visitor-header {
+    padding: 20px;
+  }
+  //==============================================
+  //============================ admin page ===========================================
+
+  .plan-name-box {
+    transform: translate(-50%, -50%);
+  }
+
+  //=================================== blogs ================================================
+  .blogs {
+    margin: $visitor-header-margin-mobile;
+  }
+  //================= homr =================================================
+
+  .home {
+    overflow-x: auto;
+    margin: 0 20px;
+    .section-1 {
+      padding: 0 10px;
+      .content {
+        margin-top: 50px;
+        padding-right: 0px;
+        .heading {
+          font-size: 40px;
+          text-align: center;
+        }
+      }
+      .image-box {
+        height: 280px;
+      }
+      .journey {
+        .mapWrapper {
+          .row {
+            .itemBar {
+              .itemInfo {
+                p {
+                  max-width: 100px;
+                }
+              }
+            }
+          }
+        }
+        .current-journey {
+          padding: 60px 0;
+          border-top: 1px solid var(--border);
+        }
+        .shipgpt-journey {
+          border-top: 1px solid var(--border);
+          padding: 60px 0;
+        }
+      }
+    }
+    .section-2 {
+      padding: 0;
+      margin-top: 70px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .section-3 {
+      .box {
+        .way-group {
+          padding: 0 15px;
+          .ways {
+            .button {
+              color: var(--text_light);
+            }
+          }
+          .content {
+            margin-top: 100px;
+            zoom: 95%;
+            left: 15px;
+          }
+          .bg-content {
+            height: 370px;
+            margin-top: -5px;
+          }
+        }
+      }
+    }
+    .section-4 {
+      padding: 150px 100px 50px 100px;
+    }
+    .section-5 {
+      padding: 50px;
+      h3 {
+        font-size: 30px;
+      }
+      .pricing-box {
+        display: block;
+        .pricing-card {
+          margin-top: 20px;
+          min-width: 280px;
+        }
+      }
+    }
+  }
+  //============================ admin page ===========================================
+
+  .section-box {
+    min-width: 250px;
+  }
+  //======================== file upload ====================================
+
+  .upload_box {
+    max-width: 200px;
+  }
+  //===================== upload button ====================
+  .widthForUpload {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+  //================== bot ============================
+  .main {
+    padding: 0px 0px 0px 0px;
+    .center {
+      padding: 1rem 0px;
+    }
+  }
+  //===================================================================================
+  //==================== ‼️ 🚫 💀⚡ DO NOT WRITE STYLES OUTSIDE THIS SCOPE ⚡💀 🚫 ‼️ ====================================
+  //==================== ‼️ 🚫 💀⚡ DO NOT WRITE STYLES OUTSIDE THIS SCOPE ⚡💀 🚫 ‼️ ====================================
+}

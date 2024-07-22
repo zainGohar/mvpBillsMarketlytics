@@ -1,0 +1,33 @@
+.popup {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .popuptext {
+    background-color: #fa405c;
+    color: #ffecef;
+    text-align: center;
+    border-radius: 8px;
+    padding: 7px;
+    font-weight: 400;
+    font-size: 15px;
+    position: absolute;
+    z-index: 1;
+    bottom: 12px;
+    opacity: 85%;
+  }
+  .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 40%;
+    margin-left: -70px;
+    border-width: 15px;
+    border-style: solid;
+    border-color: #fa405c transparent transparent transparent;
+  }
+}

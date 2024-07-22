@@ -1,0 +1,42 @@
+const express = require("express");
+const app = express();
+
+const usersRoutes = require("./user-routes");
+const paymentRoutes = require("./payment-routes");
+const ingestRoutes = require("./ingest-routes");
+const fileRoutes = require("./file-route");
+const chatmessageRoute = require("./chat-router");
+const youtubeRoute = require("./youtube-routes");
+const webRoute = require("./web-routes");
+const textRoute = require("./text-routes");
+const folderRoute = require("./folder-router");
+const deleteRoute = require("./delete-file-router");
+const videoRoute = require("./video-router");
+const audioRoute = require("./audio-router");
+const imageRoute = require("./image-router");
+const visionRoute = require("./vision-router");
+const chatImageRouter = require("./chatImage-router");
+const getFile = require("./getFile-router");
+const textToSpeech = require("./textToSpeech-routes");
+const textAnalyser = require("./textAnalyser-router");
+
+app.use("/users", usersRoutes);
+app.use("/payment", paymentRoutes);
+app.use("/file", fileRoutes);
+app.use("/ingest", ingestRoutes);
+app.use("/chat", chatmessageRoute);
+app.use("/youtube", youtubeRoute);
+app.use("/web", webRoute);
+app.use("/text", textRoute);
+app.use("/folder", folderRoute);
+app.use("/delete", deleteRoute);
+app.use("/video", videoRoute);
+app.use("/audio", audioRoute);
+app.use("/image", imageRoute);
+app.use("/vision", visionRoute);
+app.use("/chat-image", chatImageRouter);
+app.use("/get-file", getFile);
+app.use("/text-to-speech", textToSpeech);
+app.use("/text-analyser", textAnalyser);
+
+module.exports = app;
