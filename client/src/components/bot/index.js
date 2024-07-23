@@ -90,6 +90,7 @@ export default function Bot() {
     await dispatch(setStopChat(ctrl));
 
     try {
+      ////
       // fetchEventSource(
       //   `${process.env.NEXT_PUBLIC_BACKEND_URL}/back/chat?model=${selectedModel?.name}&model-type=${selectedModel?.type}`,
       //   {
