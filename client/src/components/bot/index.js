@@ -143,18 +143,61 @@ export default function Bot() {
     }
   }
 
+  // function exportFile(values) {
+  //   const sortData = values?.data;
+
+  //   function transformData(data) {
+  //     return [Object.keys(data), Object.values(data)];
+  //   }
+
+  //   const transformedData = transformData(sortData);
+
+  //   const csv = Papa.unparse({
+  //     fields: transformedData[0],
+  //     data: [transformedData[1]],
+  //   });
+
+  //   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  //   const link = document.createElement("a");
+  //   link.href = URL.createObjectURL(blob);
+  //   link.download = "exported_data.csv";
+  //   link.click();
+  // }
+
   function exportFile(values) {
-    const sortData = values?.data;
+    const data = values?.data;
 
     function transformData(data) {
-      return [Object.keys(data), Object.values(data)];
+      if (data.Electricity || data.Gas) {
+        console.log("gouble entry");
+        const headers = Object.keys(data.Electricity || data.Gas);
+        const rows = [];
+
+        if (data.Electricity) {
+          rows.push(Object.values(data.Electricity));
+        }
+        if (data.Gas) {
+          rows.push(Object.values(data.Gas));
+        }
+
+        return { headers, rows };
+      } else {
+        console.log("single");
+        const headers = Object.keys(data);
+        const rows = [Object.values(data)];
+
+        console.log({ headers });
+        console.log({ rows });
+
+        return { headers, rows };
+      }
     }
 
-    const transformedData = transformData(sortData);
+    const transformedData = transformData(data);
 
     const csv = Papa.unparse({
-      fields: transformedData[0],
-      data: [transformedData[1]],
+      fields: transformedData.headers,
+      data: transformedData.rows,
     });
 
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });

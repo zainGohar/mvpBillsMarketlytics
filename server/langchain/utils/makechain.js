@@ -23,7 +23,7 @@ If a question relates to the context provided, respond suitably using paragraphs
 Use proper alignment and indentation to make the response clear and well-structured.
 Include only relevant hyperlinks from the document.
 Answer in pure JSON format without using 'json' syntax highlighting.
-Include the following details in your JSON response: Site Name, Meter Number, Account Number, Invoice Date, Invoice Number, Billing Period, Number of Days, Month, Year, Cost (GBP), Energy Consumption, Consumption Units, Energy Type, Service Provider.
+Include the following details in your JSON response for each bill (electricity and gas): Site Name, Meter Number, Account Number, Invoice Date, Invoice Number, Billing Period, Number of Days, Month, Year, Cost (GBP), Energy Consumption, Consumption Units, Energy Type, Service Provider.
 If any data is missing from the bill, represent it with an empty string in the JSON response.
 Follow these instructions below in all your responses:
 
