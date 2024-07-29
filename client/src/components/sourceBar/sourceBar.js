@@ -56,7 +56,7 @@ const SourceBar = () => {
 
   function handleSelectSource(l) {
     dispatch(setCurrentSource(l?.value));
-    dispatch(setModel({ type: "openai", name: "gpt-4" }));
+    dispatch(setModel({ type: "openai", name: "gpt-4-1106-preview" }));
     dispatch(
       setSelectedFolderORFile({
         id: null,
@@ -68,7 +68,7 @@ const SourceBar = () => {
     <>
       <div className={"file-sidebar"}>
         <div className={"side"}>
-          <ul className={`ps-0`}>
+          {/* <ul className={`ps-0`}>
             {list?.map((l) => {
               return (
                 <li
@@ -84,7 +84,7 @@ const SourceBar = () => {
                 </li>
               );
             })}
-          </ul>
+          </ul> */}
         </div>
       </div>
     </>

@@ -252,7 +252,7 @@
 
 .drawer-margin-desktop {
   height: calc(var(--vh, 1vh) * 100);
-  margin-left: $sidebar_width;
+  // margin-left: $sidebar_width;
 }
 
 .drawer-margin-mobile {
@@ -1709,6 +1709,18 @@ $bdrs-icon: 100%;
   min-width: 400px;
 }
 
+.file_button {
+  span {
+    width: 88%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.export_button {
+  left: -20px;
+}
+
 //================ upload input ======================
 
 .font-box {
@@ -2007,7 +2019,7 @@ $bdrs-icon: 100%;
     .list-main {
       // overflow: hidden;
       position: relative;
-      height: 400px;
+      height: 100%;
       overflow: auto;
 
       &::-webkit-scrollbar {
@@ -2127,7 +2139,7 @@ $bdrs-icon: 100%;
 
 .file-sidebar {
   width: 100%;
-  height: 400px;
+  height: 100%;
   padding: 0;
   float: left;
   color: var(--text);

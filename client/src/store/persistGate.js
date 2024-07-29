@@ -19,7 +19,7 @@ export function Persist({ children }) {
     async function runOneTime() {
       if (onetimeRef.current && logIn) {
         onetimeRef.current = false;
-        await dispatch(loginDetailsApiCall());
+        // await dispatch(loginDetailsApiCall());
       }
     }
     runOneTime();

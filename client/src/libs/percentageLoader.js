@@ -40,7 +40,7 @@ const PercentageLoading = ({ items, timePerItem, id }) => {
       </div>
       <p
         className="mb-0 ms-3"
-        style={{ fontSize: "12px" }}
+        style={{ fontSize: "12px", color: "var(--text)" }}
       >{`${percentage}%`}</p>
     </div>
   );

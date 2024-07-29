@@ -26,7 +26,7 @@ const Admin = ({ children }) => {
   return (
     <>
       <div className="main-drawr">
-        <div
+        {/* <div
           className={`main-sidebar ${
             mainDrawrClass[!!view][!!sidebar]
           } animation`}
@@ -34,7 +34,7 @@ const Admin = ({ children }) => {
           <div className="Drawer-content">
             <Sidebar />
           </div>
-        </div>
+        </div> */}
 
         <div
           className={`animation drawer-margin-${

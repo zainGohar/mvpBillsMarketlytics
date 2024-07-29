@@ -78,7 +78,7 @@ const Admin = () => {
       link: "gpt-4-1106-preview",
       id: 5,
       type: "openai",
-    }
+    },
   ].map((model) => ({
     ...model,
     onClick: () => handleSelectModel(model.link, model.type),
@@ -108,7 +108,7 @@ const Admin = () => {
 
   return (
     <div className="px-4 pb-4">
-      <div className="py-4 d-sm-flex d-block">
+      {/* <div className="py-4 d-sm-flex d-block">
         {list.map((l) => {
           return (
             <div className="section-box card mx-2 my-sm-0 my-3">
@@ -124,9 +124,12 @@ const Admin = () => {
             </div>
           );
         })}
-      </div>
-      <div className="mx-2 mt-0 d-flex ai-box">
-        <div
+      </div> */}
+      <div
+        className="mx-2 mt-5 d-flex ai-box"
+        style={{ minHeight: "75vh", maxHeight: "75vh" }}
+      >
+        {/* <div
           style={{
             position: "absolute",
             right: "10px",
@@ -143,21 +146,21 @@ const Admin = () => {
             }
             list={models}
           />
-        </div>
+        </div> */}
 
-        <div
+        {/* <div
           className="col-2 px-0 source-bar"
           style={{
             display: showChatMobile ? "none" : "block",
           }}
         >
           <SourceBar />
-        </div>
+        </div> */}
 
         <div
           className={`col-${
-            showChatMobile ? "12" : "10"
-          } col-sm-10 px-0 d-flex justify-content-center align-items-center`}
+            showChatMobile ? "12" : "12"
+          }  px-0 d-flex justify-content-center align-items-center`}
         >
           <SourceAndBot />
         </div>

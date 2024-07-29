@@ -7,15 +7,15 @@ export default function getLightDarkValue(light, dark) {
 export const useTheme = () => {
   const getInitialTheme = () => {
     if (typeof document !== "undefined") {
-      return document.body.getAttribute("data-theme") || "light";
+      return document.body.getAttribute("data-theme") || "dark";
     }
-    return "light";
+    return "dark";
   };
   const [theme, setTheme] = useState(getInitialTheme);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const updateTheme = () =>
-        setTheme(document.body.getAttribute("data-theme") || "light");
+        setTheme(document.body.getAttribute("data-theme") || "dark");
       window.addEventListener("themeChange", updateTheme);
       return () => window.removeEventListener("themeChange", updateTheme);
     }

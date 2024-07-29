@@ -3,7 +3,7 @@ export function getRoutes(type, param) {
   const routes = [
     //========== visitor routes ========
     {
-      name: "Home",
+      name: "Utility Bills",
       path: `/`,
       type: "visitor",
     },

@@ -7,5 +7,6 @@ export default function Home() {
   const signedIn = useSelector(
     (state) => state?.entities?.credentials?.signedIn
   );
-  return signedIn ? <Admin /> : <Visitor />;
+  console.log({ signedIn });
+  return <Admin />;
 }

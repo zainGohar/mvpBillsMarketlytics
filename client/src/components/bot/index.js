@@ -31,6 +31,7 @@ import getLightDarkValue from "@/libs/theme/page";
 import { config } from "../../../config";
 import axios from "axios";
 import Papa from "papaparse";
+import UploadButton from "../sources/uploadButton";
 
 export default function Bot() {
   const dispatch = useDispatch();
@@ -169,7 +170,7 @@ export default function Bot() {
     const data = values?.data;
 
     function transformData(data) {
-      if (data.Electricity || data.Gas) {
+      if (data.Electricity && data.Gas) {
         console.log("gouble entry");
         const headers = Object.keys(data.Electricity || data.Gas);
         const rows = [];
@@ -269,125 +270,12 @@ export default function Bot() {
       >
         <FileSystem />
       </div>
-      <main className={"main position-relative"}>
-        {/* {view ? (
-          <div className="mobile-header">
-            <i
-              className="bi bi-arrow-left ps-3"
-              style={{
-                fontSize: "18px",
-                zIndex: "1000",
-              }}
-              onClick={() => dispatch(setChatMobile(false))}
-            />
-            <p className="mb-0 ms-4">{file_name}</p>
-          </div>
-        ) : null}
-        <div className={"cloud flex-column mt-5 mt-sm-4"}>
-          <div ref={messageListRef} className={"messagelist"}>
-            {chatMessages.map((message, index) => {
-              let icon;
-              let className;
-              if (message.type === "apiMessage") {
-                icon = (
-                  <Image
-                    src={`/images/${config.icon}`}
-                    alt="AI"
-                    width="40"
-                    height="40"
-                    className={`boticon ${imgClass}`}
-                    priority
-                  />
-                );
-                className = "apimessage";
-              } else {
-                icon = (
-                  <>
-                    <i className="bi bi-person-fill usericonBoot" />
-                  </>
-                );
-                className =
-                  StoreLoader &&
-                  StoreLoader["chatLoader"] &&
-                  index === chatMessages.length - 1
-                    ? "usermessagewaiting"
-                    : "usermessage";
-              }
-              return (
-                <>
-                  <div key={`chatMessage-${index}`} className={className}>
-                    {icon}
-                    <div className={"markdownanswer"}>
-                      <pre className="MsgResponse mb-0">{message.message}</pre>
-                    </div>
-                  </div>
-                </>
-              );
-            })}
-          </div>
-        </div> */}
+      <main className={"main position-relative w-100"}>
+        <div className="" style={{ margin: "auto" }}>
+          <UploadButton />
+        </div>
 
-        {/* <div className={`center px-3 px-sm-5`}>
-          <div className={"cloudform"}>
-            <form onSubmit={handleSubmit} action="#0">
-              <div className="grow-wrap">
-                <textarea
-                  readOnly={!_id ? true : false}
-                  disabled={
-                    StoreLoader && StoreLoader["chatLoader"] ? true : false
-                  }
-                  style={{
-                    opacity: files?.length || folders?.length ? "100%" : "20%",
-                  }}
-                  onKeyDown={handleEnter}
-                  ref={textareaRef1}
-                  autoFocus={false}
-                  maxLength={700}
-                  rows={1}
-                  id="userInput"
-                  name="userInput"
-                  placeholder={
-                    StoreLoader && StoreLoader["chatLoader"]
-                      ? "Waiting for response..."
-                      : files?.length == 0
-                      ? "Upload file to start conversation"
-                      : "Ask a question about your document?"
-                  }
-                  value={query}
-                  onClick={handleClickinput}
-                  onChange={(e) => handleSetMessage(e)}
-                  onInput={handleInput}
-                  className={"scrollbar"}
-                />
-              </div>
-              <button type="submit" className={"generatebutton"}>
-                {StoreLoader?.["chatLoader"] ? (
-                  <>
-                    <div className={"loadingwheel"}>
-                      <LoadingDots />
-                    </div>
-
-                    <Button
-                      className="chatCancelButton border"
-                      icon="bi bi-x-lg"
-                      onClick={(e) => {
-                        e?.stopPropagation(), handleResponse("false");
-                      }}
-                    />
-                  </>
-                ) : (
-                  <div
-                    className={`animation bi bi-send-fill ${
-                      query ? "svg-filled" : "svgicon"
-                    }`}
-                  />
-                )}
-              </button>
-            </form>
-          </div>
-        </div> */}
-
-        <button
+        {/* <button
           onClick={handleSubmit}
           className={"Download_Button"}
           disabled={!_id}
@@ -411,7 +299,7 @@ export default function Bot() {
               </p>
             </div>
           )}
-        </button>
+        </button> */}
       </main>
     </div>
   );

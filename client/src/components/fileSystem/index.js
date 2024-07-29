@@ -7,7 +7,12 @@ import {
   setChatMobile,
   setModel,
 } from "@/store/aiFileStructure";
-import { getHistory } from "@/store/mainSlice";
+import {
+  getHistory,
+  addUserMessage,
+  clearPending,
+  setStopChat,
+} from "@/store/mainSlice";
 import {
   getChatObject,
   handleCompleteChat,
@@ -21,6 +26,8 @@ import { hideLoader, setLoader } from "@/store/loader";
 import axios from "axios";
 import Button from "@/libs/button/page";
 import { ViewPoint } from "@/libs/common";
+import Papa from "papaparse";
+import { LoadingDots } from "@/libs/Loader";
 
 const FilesSidebar = () => {
   const dispatch = useDispatch();
@@ -52,6 +59,8 @@ const FilesSidebar = () => {
 
   const folderData = folders?.filter((f) => f.status == statusType);
   const StoreLoader = useSelector((state) => state.entities.loader);
+
+  console.log({ StoreLoader });
 
   var [checkedCount, setcheckedCount] = useState(0);
   //=================================================================
@@ -372,6 +381,8 @@ const FileStructure = (props) => {
     statusType,
   } = props;
 
+  console.log({ index });
+
   const mobileView = ViewPoint("700px");
 
   const dispatch = useDispatch();
@@ -390,6 +401,7 @@ const FileStructure = (props) => {
   );
 
   const StoreLoader = useSelector((state) => state.entities.loader);
+  console.log(" fuck ", StoreLoader);
   //=================================================================
 
   const handleShowFiles = ({ i }) => {
@@ -470,6 +482,158 @@ const FileStructure = (props) => {
     mobileView ? dispatch(setChatMobile(true)) : null;
   }
 
+  //===========================================================================================
+  const [query, setQuery] = useState("");
+  const [selected, setSelected] = useState("");
+  console.log({ selected });
+
+  const selectedModel = useSelector(
+    (state) => state?.entities?.aiFileStructure?.model
+  );
+  console.log({ selectedModel });
+
+  const handleSubmit = async (index) => {
+    setSelected(index);
+
+    const question = query.trim();
+    dispatch(addUserMessage({ question, _id }));
+    await dispatch(setLoader("chatLoader"));
+    setQuery("");
+    dispatch(clearPending());
+
+    const ctrl = new AbortController();
+    await dispatch(setStopChat(ctrl));
+
+    try {
+      const axiosResponse = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/back/chat?model-type=${selectedModel?.type}&model=${selectedModel?.name}`,
+        {
+          question,
+          history: "",
+          file_id: _id,
+          streaming: false,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("axiosResponse", axiosResponse.data);
+      await exportFile(axiosResponse.data);
+      await dispatch(hideLoader("chatLoader"));
+    } catch (error) {
+      await dispatch(hideLoader("chatLoader"));
+      console.log("error", error);
+    }
+  };
+
+  function exportFile(values) {
+    const data = values?.data;
+
+    function transformData(data) {
+      if (data.Electricity && data.Gas) {
+        console.log("gouble entry");
+        const headers = Object.keys(data.Electricity || data.Gas);
+        const rows = [];
+
+        if (data.Electricity) {
+          rows.push(Object.values(data.Electricity));
+        }
+        if (data.Gas) {
+          rows.push(Object.values(data.Gas));
+        }
+
+        return { headers, rows };
+      } else {
+        console.log("single");
+        const headers = Object.keys(data);
+        const rows = [Object.values(data)];
+
+        console.log({ headers });
+        console.log({ rows });
+
+        return { headers, rows };
+      }
+    }
+
+    const transformedData = transformData(data);
+
+    const csv = Papa.unparse({
+      fields: transformedData.headers,
+      data: transformedData.rows,
+    });
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "exported_data.csv";
+    link.click();
+  }
+
+  function exportFile(values) {
+    const data = values?.data;
+
+    function flattenObject(ob) {
+      const toReturn = {};
+
+      for (const i in ob) {
+        if (!ob.hasOwnProperty(i)) continue;
+
+        if (typeof ob[i] === "object" && ob[i] !== null) {
+          const flatObject = flattenObject(ob[i]);
+          for (const x in flatObject) {
+            if (!flatObject.hasOwnProperty(x)) continue;
+            toReturn[i + "." + x] = flatObject[x];
+          }
+        } else {
+          toReturn[i] = ob[i];
+        }
+      }
+      return toReturn;
+    }
+
+    function transformData(data) {
+      const rows = [];
+
+      if (data.Electricity || data.Gas) {
+        for (const [key, value] of Object.entries(data)) {
+          rows.push(flattenObject(value));
+        }
+      } else {
+        rows.push(flattenObject(data));
+      }
+
+      const headers = Array.from(
+        new Set(rows.flatMap((row) => Object.keys(row)))
+      );
+
+      return { headers, rows };
+    }
+
+    const transformedData = transformData(data);
+
+    const csv = Papa.unparse({
+      fields: transformedData.headers,
+      data: transformedData.rows.map((row) =>
+        transformedData.headers.map((header) => row[header] || "")
+      ),
+    });
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "exported_data.csv";
+    link.click();
+  }
+
+  const handleResponse = async (status) => {
+    setTimeout(() => {
+      textareaRef1.current?.focus();
+    }, 300);
+    await handleCompleteChat(status, dispatch);
+  };
+
   //===================================================================================================
 
   return (
@@ -478,6 +642,7 @@ const FileStructure = (props) => {
       className="position-relative d-flex file-button-box"
       onMouseOver={() => setShowIcons("showPermanent")}
       onMouseOut={() => setShowIcons(WebView ? "showPermanent" : "showHover")}
+      onClick={(e) => (check_files ? e.stopPropagation() : handleClick(data))}
     >
       <div
         className={`w-100 defaultbtn ${
@@ -530,35 +695,10 @@ const FileStructure = (props) => {
           </div>
         )}
 
-        <div>
+        <div className="d-flex align-items-center ">
           <Button
-            onClick={(e) =>
-              check_files ? e.stopPropagation() : handleClick(data)
-            }
             iconOnClick={() => handleShowFiles({ i: index })}
-            text={
-              folder_data ? (
-                <div className="d-flex align-items-center p-0 m-0">
-                  <span style={{ width: "auto", maxWidth: "100px" }}>
-                    {data.folder_name}
-                  </span>
-
-                  <span className="ms-2 folder-badge" title="number of files">
-                    {
-                      fileData?.filter((file) =>
-                        assignedFiles?.some(
-                          (assign) =>
-                            assign.file_id === file.file_id &&
-                            assign.folder_id === data.folder_id
-                        )
-                      )?.length
-                    }
-                  </span>
-                </div>
-              ) : (
-                data.file_name
-              )
-            }
+            text={data.file_name}
             icon={`bi ${
               folder_data
                 ? `bi-chevron-${showFolder == index ? "down" : "right"}`
@@ -572,11 +712,28 @@ const FileStructure = (props) => {
                 ? "bi bi-globe"
                 : "bi-card-text"
             }  me-2`}
-            className={` ${check_files ? "ms-3 ps-3" : ""}  ${
+            className={` file_button  ${check_files ? "ms-3 ps-3" : ""}  ${
               folder_files ? "ps-3" : ""
             } px-3`}
-            width={check_files ? "80%" : "100%"}
+            width={"95%"}
           />
+
+          {StoreLoader?.["chatLoader"] && index === selected ? (
+            <>
+              <div
+                className={"loadingwheel"}
+                style={{ position: "relative", left: "-12px" }}
+              >
+                <LoadingDots />
+              </div>
+            </>
+          ) : (
+            <Button
+              className=""
+              onClick={() => handleSubmit(index)}
+              icon="bi bi-download"
+            />
+          )}
         </div>
       </div>
     </div>

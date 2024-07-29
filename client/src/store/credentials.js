@@ -5,7 +5,7 @@ import { apiCallBegan } from "./api";
 const slice = createSlice({
   name: "credentials",
   initialState: {
-    signedIn: false,
+    signedIn: "",
     email_id: "",
     user_id: "",
     status: "inactive",
