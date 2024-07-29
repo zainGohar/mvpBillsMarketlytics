@@ -56,7 +56,7 @@ const SourceBar = () => {
 
   function handleSelectSource(l) {
     dispatch(setCurrentSource(l?.value));
-    dispatch(setModel({ type: "openai", name: "gpt-3.5-turbo" }));
+    dispatch(setModel({ type: "openai", name: "gpt-4" }));
     dispatch(
       setSelectedFolderORFile({
         id: null,

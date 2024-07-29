@@ -68,12 +68,6 @@ const Admin = () => {
 
   const models = [
     {
-      img: "gpt-3",
-      link: "gpt-3.5-turbo",
-      id: 0,
-      type: "openai",
-    },
-    {
       img: "gpt-4",
       link: "gpt-4",
       id: 1,
@@ -84,19 +78,7 @@ const Admin = () => {
       link: "gpt-4-1106-preview",
       id: 5,
       type: "openai",
-    },
-    {
-      img: "claude",
-      link: "claude-2.1",
-      id: 2,
-      type: "anthropic",
-    },
-    {
-      img: "gemini",
-      link: "gemini-pro",
-      id: 3,
-      type: "gemini-pro",
-    },
+    }
   ].map((model) => ({
     ...model,
     onClick: () => handleSelectModel(model.link, model.type),
