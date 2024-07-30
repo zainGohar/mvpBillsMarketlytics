@@ -401,7 +401,6 @@ const FileStructure = (props) => {
   );
 
   const StoreLoader = useSelector((state) => state.entities.loader);
-  console.log(" fuck ", StoreLoader);
   //=================================================================
 
   const handleShowFiles = ({ i }) => {
@@ -522,54 +521,55 @@ const FileStructure = (props) => {
       console.log("axiosResponse", axiosResponse.data);
       await exportFile(axiosResponse.data);
       await dispatch(hideLoader("chatLoader"));
+      setSelected(null);
     } catch (error) {
       await dispatch(hideLoader("chatLoader"));
       console.log("error", error);
     }
   };
 
-  function exportFile(values) {
-    const data = values?.data;
+  // function exportFile(values) {
+  //   const data = values?.data;
 
-    function transformData(data) {
-      if (data.Electricity && data.Gas) {
-        console.log("gouble entry");
-        const headers = Object.keys(data.Electricity || data.Gas);
-        const rows = [];
+  //   function transformData(data) {
+  //     if (data.Electricity && data.Gas) {
+  //       console.log("gouble entry");
+  //       const headers = Object.keys(data.Electricity || data.Gas);
+  //       const rows = [];
 
-        if (data.Electricity) {
-          rows.push(Object.values(data.Electricity));
-        }
-        if (data.Gas) {
-          rows.push(Object.values(data.Gas));
-        }
+  //       if (data.Electricity) {
+  //         rows.push(Object.values(data.Electricity));
+  //       }
+  //       if (data.Gas) {
+  //         rows.push(Object.values(data.Gas));
+  //       }
 
-        return { headers, rows };
-      } else {
-        console.log("single");
-        const headers = Object.keys(data);
-        const rows = [Object.values(data)];
+  //       return { headers, rows };
+  //     } else {
+  //       console.log("single");
+  //       const headers = Object.keys(data);
+  //       const rows = [Object.values(data)];
 
-        console.log({ headers });
-        console.log({ rows });
+  //       console.log({ headers });
+  //       console.log({ rows });
 
-        return { headers, rows };
-      }
-    }
+  //       return { headers, rows };
+  //     }
+  //   }
 
-    const transformedData = transformData(data);
+  //   const transformedData = transformData(data);
 
-    const csv = Papa.unparse({
-      fields: transformedData.headers,
-      data: transformedData.rows,
-    });
+  //   const csv = Papa.unparse({
+  //     fields: transformedData.headers,
+  //     data: transformedData.rows,
+  //   });
 
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "exported_data.csv";
-    link.click();
-  }
+  //   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  //   const link = document.createElement("a");
+  //   link.href = URL.createObjectURL(blob);
+  //   link.download = "exported_data.csv";
+  //   link.click();
+  // }
 
   function exportFile(values) {
     const data = values?.data;

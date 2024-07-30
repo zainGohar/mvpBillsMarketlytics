@@ -45,7 +45,8 @@ const slice = createSlice({
     // ================= new data =======================================
     model: {
       type: "openai",
-      name: "gpt-4-1106-preview",
+      //name: "gpt-4-1106-preview",
+      name: "gpt-4o-2024-05-13",
     },
     currentSource: "file",
     showChatMobile: false,

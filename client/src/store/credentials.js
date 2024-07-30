@@ -1,17 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 import { apiCallBegan } from "./api";
-
 const slice = createSlice({
   name: "credentials",
   initialState: {
-    signedIn: "",
-    email_id: "",
-    user_id: "",
-    status: "inactive",
+    signedIn: true,
+    email_id: "umairirs32@gmail.com",
+    user_id: "6687c750755a65e23dc5fee9",
+    status: "active",
     stripe_cus_id: "",
-    login_type: "",
-    selectedPlan: "",
+    login_type: "web",
+    selectedPlan: "premiumyearly",
     //=========================
     cancelTokenSource: null,
     apiRequests: {},
