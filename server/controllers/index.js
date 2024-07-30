@@ -15,3 +15,4 @@ module.exports.getSeoDetailsVision = require("./vision-controller");
 module.exports.chatwithImageController = require("./chatImage-controller");
 module.exports.textToSpeechController = require("./textToSpeech-controller");
 module.exports.textAnalyserController = require("./textAnalyser-controller");
+module.exports.reportController = require("./report-controller");
