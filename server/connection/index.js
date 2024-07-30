@@ -4,10 +4,10 @@ const config = require("../global/config");
 
 const myDb = mysql.createPool({
   connectionLimit: 10,
-  host: config.get("DB_HOST"),
-  user: config.get("DB_USERNAME"),
-  password: config.get("DB_PASS"),
-  database: config.get("DB_NAME"),
+  host: "localhost",//config.get("DB_HOST"),
+  user: "root",//config.get("DB_USERNAME"),
+  password: "daewoo3366",//config.get("DB_PASS"),
+  database: "utility_ai",//config.get("DB_NAME"),
   multipleStatements: true,
 });
 

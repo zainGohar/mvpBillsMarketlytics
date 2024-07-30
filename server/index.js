@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 global.__basedir = __dirname;
 const setConfig = require("./middleware/setConfig");
 
-const PORT = 30007;
+const PORT = 30009;
 
 const fileTransport = new winston.transports.File({
   filename: "error.log",
