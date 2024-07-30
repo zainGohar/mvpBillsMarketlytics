@@ -28,12 +28,12 @@ const UploadButton = () => {
     await dispatch(setProgressType("file"));
     await dispatch(setLoader("uploadfile"));
     const formData = new FormData();
-    formData.append("file", i);
+    formData.append("files", i);
     await dispatch(
       uploadToServer({
         data: formData,
         name,
-        url: `/file`,
+        url: `/analyze`,
         type: "file",
       })
     );

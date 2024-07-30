@@ -2,14 +2,14 @@
 
 // Define default light theme properties
 :root {
-  @each $name, $variable in $light-colors {
+  @each $name, $variable in $dark-colors {
     --#{$name}: #{$variable};
   }
 }
 
 // Define dark theme properties
 [data-theme="dark"] {
-  @each $name, $variable in $dark-colors {
+  @each $name, $variable in $light-colors {
     --#{$name}: #{$variable};
   }
 }

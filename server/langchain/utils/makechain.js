@@ -6,32 +6,25 @@ const { CallbackManager } = require("langchain/callbacks");
 const { ChatAnthropicMessages } = require("@langchain/anthropic");
 const { ChatGoogleGenerativeAI } = require("@langchain/google-genai");
 
-const CONDENSE_TEMPLATE = `As a language model, your task is to rephrase follow-up questions related to a
-given conversation into standalone questions. If the follow-up question is not related to the conversation,
-please leave it unchanged. Please provide clear and concise standalone questions that can be easily understood without requiring context from the original conversation.
-Please note that your responses should demonstrate an understanding of natural language and be flexible enough to allow for various relevant and creative rephrasings.
- Follow Up Input: {question}
- Standalone question:`;
+const CONDENSE_TEMPLATE = `As a language model, your task is to ask this question:
+{question}`;
 
 const getQATemplate = () => {
   return `  
-   As an AI document helper, your task is to respond concisely to questions based on the provided document context.
+   As an AI Data Extraction Helper, your task is to extract data, values from the provided document context.
 
 Instructions:
 
-If a question relates to the context provided, respond suitably using paragraphs, bullet points, tables, or a conversational style.
-Use proper alignment and indentation to make the response clear and well-structured.
-Include only relevant hyperlinks from the document.
 Answer in pure JSON format without using 'json' syntax highlighting.
-Include the following details in your JSON response for each bill (electricity and gas): Site Name, Meter Number, Account Number, Invoice Date, Invoice Number, Billing Period, Number of Days, Month, Year, Cost (GBP), Energy Consumption, Consumption Units, Energy Type, Service Provider.
-If any data is missing from the bill, represent it with an empty string in the JSON response.
-Follow these instructions below in all your responses:
+Include the following details in your JSON response for each bill (electricity and gas): Site Name, Meter Number, Account Number, Date, Invoice Number, Billing Period, Number of Days, Month, Year, Cost (GBP), Energy Consumption, Consumption Units, Energy Type, Service Provider.
+If any data is missing from the bill, represent it with an empty string in the JSON response. Do not fill data if you are not sure about the result.
+You will be provided with context and you must provide following values in return in all your responses:
 
-Site Name: The company's name.
-Meter Number: Provide the meter number.
-Account Number: Provide the account number.
-Invoice Date: The date the invoice was issued.
-Invoice Number: The unique identifier for the invoice.
+Site Name: This is the company's or Clients Name.
+Meter Number: This is the Meter Number stated as 'Meter' or 'Meter Number'. This is not the supply number.
+Account Number: This is mentioned either as 'Your electricity account number:' or just 'Account Number'. 
+Invoice Date: This is the Bill Date of the invoice/electricity bill, mentioned as 'bill date' or 'Dated' or may be some other form.
+Invoice Number: This is the unique Invoice Number.
 Billing Period: The range of dates the bill covers.
 Number of Days: How many days the billing period covers.
 Month: The month in which the invoice was issued.
@@ -44,8 +37,6 @@ Service Provider: The company providing the service.
 
 ----------
 CONTEXT: {context}
-----------
-CHAT HISTORY: {chat_history}
 ----------
 QUESTION: {question}
 ----------
@@ -75,9 +66,9 @@ const makeChain = (
       break;
     case "openai":
       model = new ChatOpenAI({
-        temperature: temperature || 0.1,
+        temperature: 0.2,
         openAIApiKey: key,
-        modelName: chat_model || "gpt-3.5-turbo",
+        modelName: "gpt-4o-2024-05-13",
         streaming: Boolean(onTokenStream),
         callbackManager: onTokenStream
           ? CallbackManager.fromHandlers({
@@ -90,7 +81,7 @@ const makeChain = (
 
       nonStreamingModel = new ChatOpenAI({
         temperature: 0.1,
-        modelName: chat_model,
+        modelName: "gpt-4o-2024-05-13",
         openAIApiKey: key,
       });
       break;

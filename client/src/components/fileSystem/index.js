@@ -381,8 +381,6 @@ const FileStructure = (props) => {
     statusType,
   } = props;
 
-  console.log({ index });
-
   const mobileView = ViewPoint("700px");
 
   const dispatch = useDispatch();
@@ -401,7 +399,6 @@ const FileStructure = (props) => {
   );
 
   const StoreLoader = useSelector((state) => state.entities.loader);
-  console.log(" fuck ", StoreLoader);
   //=================================================================
 
   const handleShowFiles = ({ i }) => {
@@ -492,88 +489,74 @@ const FileStructure = (props) => {
   );
   console.log({ selectedModel });
 
-  const handleSubmit = async (index) => {
-    setSelected(index);
-
-    const question = query.trim();
-    dispatch(addUserMessage({ question, _id }));
-    await dispatch(setLoader("chatLoader"));
-    setQuery("");
-    dispatch(clearPending());
-
-    const ctrl = new AbortController();
-    await dispatch(setStopChat(ctrl));
-
+  const handleSubmit = async (id) => {
     try {
-      const axiosResponse = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/back/chat?model-type=${selectedModel?.type}&model=${selectedModel?.name}`,
-        {
-          question,
-          history: "",
-          file_id: _id,
-          streaming: false,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      console.log("axiosResponse", axiosResponse.data);
-      await exportFile(axiosResponse.data);
-      await dispatch(hideLoader("chatLoader"));
+      let file_data =
+        (await JSON.parse(localStorage.getItem(`file_data`))) || [];
+      const file = file_data?.find((f) => f.file_id == id);
+      await exportFile(JSON.parse(file?.file));
     } catch (error) {
-      await dispatch(hideLoader("chatLoader"));
       console.log("error", error);
     }
   };
 
-  function exportFile(values) {
-    const data = values?.data;
+  // function exportFile(data) {
+  //   // const data = values?.data;
 
-    function transformData(data) {
-      if (data.Electricity && data.Gas) {
-        console.log("gouble entry");
-        const headers = Object.keys(data.Electricity || data.Gas);
-        const rows = [];
+  //   function flattenObject(ob) {
+  //     const toReturn = {};
 
-        if (data.Electricity) {
-          rows.push(Object.values(data.Electricity));
-        }
-        if (data.Gas) {
-          rows.push(Object.values(data.Gas));
-        }
+  //     for (const i in ob) {
+  //       if (!ob.hasOwnProperty(i)) continue;
 
-        return { headers, rows };
-      } else {
-        console.log("single");
-        const headers = Object.keys(data);
-        const rows = [Object.values(data)];
+  //       if (typeof ob[i] === "object" && ob[i] !== null) {
+  //         const flatObject = flattenObject(ob[i]);
+  //         for (const x in flatObject) {
+  //           if (!flatObject.hasOwnProperty(x)) continue;
+  //           toReturn[i + "." + x] = flatObject[x];
+  //         }
+  //       } else {
+  //         toReturn[i] = ob[i];
+  //       }
+  //     }
+  //     return toReturn;
+  //   }
 
-        console.log({ headers });
-        console.log({ rows });
+  //   function transformData(data) {
+  //     const rows = [];
 
-        return { headers, rows };
-      }
-    }
+  //     if (data.Electricity || data.Gas) {
+  //       for (const [key, value] of Object.entries(data)) {
+  //         rows.push(flattenObject(value));
+  //       }
+  //     } else {
+  //       rows.push(flattenObject(data));
+  //     }
 
-    const transformedData = transformData(data);
+  //     const headers = Array.from(
+  //       new Set(rows.flatMap((row) => Object.keys(row)))
+  //     );
 
-    const csv = Papa.unparse({
-      fields: transformedData.headers,
-      data: transformedData.rows,
-    });
+  //     return { headers, rows };
+  //   }
 
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "exported_data.csv";
-    link.click();
-  }
+  //   const transformedData = transformData(data);
 
-  function exportFile(values) {
-    const data = values?.data;
+  //   const csv = Papa.unparse({
+  //     fields: transformedData.headers,
+  //     data: transformedData.rows.map((row) =>
+  //       transformedData.headers.map((header) => row[header] || "")
+  //     ),
+  //   });
 
+  //   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  //   const link = document.createElement("a");
+  //   link.href = URL.createObjectURL(blob);
+  //   link.download = "exported_data.csv";
+  //   link.click();
+  // }
+
+  function exportFile(data) {
     function flattenObject(ob) {
       const toReturn = {};
 
@@ -596,8 +579,8 @@ const FileStructure = (props) => {
     function transformData(data) {
       const rows = [];
 
-      if (data.Electricity || data.Gas) {
-        for (const [key, value] of Object.entries(data)) {
+      if (Array.isArray(data)) {
+        for (const value of data) {
           rows.push(flattenObject(value));
         }
       } else {
@@ -730,7 +713,9 @@ const FileStructure = (props) => {
           ) : (
             <Button
               className=""
-              onClick={() => handleSubmit(index)}
+              onClick={() =>
+                handleSubmit(data[folder_data ? "folder_id" : "file_id"])
+              }
               icon="bi bi-download"
             />
           )}

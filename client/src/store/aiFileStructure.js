@@ -45,7 +45,8 @@ const slice = createSlice({
     // ================= new data =======================================
     model: {
       type: "openai",
-      name: "gpt-4-1106-preview",
+      //name: "gpt-4-1106-preview",
+      name: "gpt-4o-2024-05-13",
     },
     currentSource: "file",
     showChatMobile: false,
@@ -258,7 +259,8 @@ export const uploadToServer = createAsyncThunk(
       }
 
       const model = getState().entities.aiFileStructure.model;
-      let url = `${data.url}?model=${model?.name}&model-type=${model?.type}`;
+      // let url = `${data.url}?model=${model?.name}&model-type=${model?.type}`;
+      let url = `${data.url}`;
       const apiData = { ...data, url };
       dispatch(callApi({ callback, callbackError, ...apiData }));
 

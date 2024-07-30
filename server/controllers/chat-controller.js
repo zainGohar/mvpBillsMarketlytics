@@ -12,24 +12,25 @@ async function chat(req, res) {
   try {
     const { /* question, */ history, file_id, streaming, ...rest } = req?.body;
     ////
+
     const question = `
-Example response format:
+Extract following values from the provided context:
 
 {
-    "Site Name": "",
-    "Meter Number": "",
-    "Account Number": "",
-    "Invoice Date": "",
-    "Invoice Number": "",
-    "Billing Period": "",
-    "Number of Days": "",
-    "Month": "",
-    "Year": "",
-    "Cost (GBP)": "",
-    "Energy Consumption": "",
-    "Consumption Units": "",
-    "Energy Type": "",
-    "Service Provider": ""
+Site Name: This is the company's or Clients Name.
+Meter Number: This is the value of Meter Number mentioned as 'Meter:' or 'Meter Number' or something like this and this is not the supply number.
+Account Number: This is mentioned either as 'Your electricity account number:' or just 'Account Number'. 
+Invoice Date: This is the Bill Date of the invoice/electricity bill, mentioned as 'bill date' or 'Dated' or may be some other form.
+Invoice Number: This is the unique Invoice Number.
+Billing Period: The range of dates the bill covers.
+Number of Days: Number of days that billing period covers. Calculate it by taking a difference between billing period. 
+Month: The month in which the invoice was issued.
+Year: The year in which the invoice was issued.
+Cost (GBP): The total cost in British Pounds.
+Energy Consumption: The total energy consumption.
+Consumption Units: The unit of measurement for energy consumption.
+Energy Type: Type(s) of energy used.
+Service Provider: The company providing the service.
 }`;
 
     let stream;
@@ -41,8 +42,8 @@ Example response format:
 
     const pinecone_key = config.get("API_KEY_PINECONE");
     const pinecone_index = config.get("INDEX_NAME_PINECONE");
-    const chat_model = config.get("MODEL");
-    const model_type = config.get("MODEL_TYPE") || getModelType(chat_model);
+    const chat_model = "gpt-4"; //config.get("MODEL");
+    const model_type = "openai"; //config.get("MODEL_TYPE") || getModelType(chat_model);
     const anthropic_key = config.get("ANTHROPIC_KEY");
     const key = getApiKey(model_type);
 
@@ -132,8 +133,8 @@ Example response format:
     );
     try {
       const response = await chain.call({
-        question: sanitizedQuestion,
-        chat_history: history || "",
+        question: question,
+        chat_history: "",
       });
 
       if (stream) {

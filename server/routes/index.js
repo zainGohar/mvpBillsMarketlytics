@@ -19,6 +19,7 @@ const chatImageRouter = require("./chatImage-router");
 const getFile = require("./getFile-router");
 const textToSpeech = require("./textToSpeech-routes");
 const textAnalyser = require("./textAnalyser-router");
+const report = require("./report-router");
 
 app.use("/users", usersRoutes);
 app.use("/payment", paymentRoutes);
@@ -38,5 +39,6 @@ app.use("/chat-image", chatImageRouter);
 app.use("/get-file", getFile);
 app.use("/text-to-speech", textToSpeech);
 app.use("/text-analyser", textAnalyser);
+app.use("/analyze", report);
 
 module.exports = app;
