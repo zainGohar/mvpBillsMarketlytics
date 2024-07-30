@@ -258,7 +258,8 @@ export const uploadToServer = createAsyncThunk(
       }
 
       const model = getState().entities.aiFileStructure.model;
-      let url = `${data.url}?model=${model?.name}&model-type=${model?.type}`;
+      // let url = `${data.url}?model=${model?.name}&model-type=${model?.type}`;
+      let url = `${data.url}`;
       const apiData = { ...data, url };
       dispatch(callApi({ callback, callbackError, ...apiData }));
 
