@@ -1721,6 +1721,18 @@ $bdrs-icon: 100%;
   left: -20px;
 }
 
+.export_btn {
+  position: absolute;
+  right: 30px;
+  top: 25px;
+  width: 120px;
+  height: 37px;
+  border-radius: 5px;
+  border: none;
+  color: var(--text);
+  background-color: var(--background);
+}
+
 //================ upload input ======================
 
 .font-box {

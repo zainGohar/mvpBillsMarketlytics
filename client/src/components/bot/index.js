@@ -260,6 +260,87 @@ export default function Bot() {
   const view = ViewPoint("700px");
   const imgClass = getLightDarkValue("img-light", "img-dark");
 
+  const handleExport = async () => {
+    try {
+      let file_data = JSON.parse(localStorage.getItem("file_data")) || [];
+      let allFileData = [];
+
+      if (Array.isArray(file_data)) {
+        file_data.forEach((item) => {
+          const fileContent = JSON.parse(item.file);
+
+          if (Array.isArray(fileContent)) {
+            fileContent.forEach((content) => {
+              allFileData.push(content);
+            });
+          } else {
+            allFileData.push(fileContent);
+          }
+        });
+
+        exportFile(allFileData);
+      } else {
+        console.log("file_data is not an array:", file_data);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  function exportFile(data) {
+    function flattenObject(ob) {
+      const toReturn = {};
+
+      for (const i in ob) {
+        if (!ob.hasOwnProperty(i)) continue;
+
+        if (typeof ob[i] === "object" && ob[i] !== null) {
+          const flatObject = flattenObject(ob[i]);
+          for (const x in flatObject) {
+            if (!flatObject.hasOwnProperty(x)) continue;
+            toReturn[i + "." + x] = flatObject[x];
+          }
+        } else {
+          toReturn[i] = ob[i];
+        }
+      }
+      return toReturn;
+    }
+
+    function transformData(data) {
+      const rows = [];
+
+      if (Array.isArray(data)) {
+        for (const value of data) {
+          rows.push(flattenObject(value));
+        }
+      } else {
+        rows.push(flattenObject(data));
+      }
+
+      const headers = Array.from(
+        new Set(rows.flatMap((row) => Object.keys(row)))
+      );
+
+      return { headers, rows };
+    }
+
+    const transformedData = transformData(data);
+
+    const csv = Papa.unparse({
+      fields: transformedData.headers,
+      data: transformedData.rows.map((row) =>
+        transformedData.headers.map((header) => row[header] || "")
+      ),
+    });
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "exported_data.csv";
+    link.click();
+  }
+
   return (
     <div className="d-flex position-relative h-100 w-100">
       <div
@@ -271,35 +352,13 @@ export default function Bot() {
         <FileSystem />
       </div>
       <main className={"main position-relative w-100"}>
+        <button className="export_btn" onClick={handleExport}>
+          Export All
+        </button>
+
         <div className="" style={{ margin: "auto" }}>
           <UploadButton />
         </div>
-
-        {/* <button
-          onClick={handleSubmit}
-          className={"Download_Button"}
-          disabled={!_id}
-        >
-          {StoreLoader?.["chatLoader"] ? (
-            <>
-              <div className={"loadingwheel"}>
-                <LoadingDots />
-              </div>
-            </>
-          ) : (
-            <div className={`animation`}>
-              {_id && (
-                <i
-                  class="bi bi-download"
-                  style={{ fontSize: "20px", color: "var(--text)" }}
-                ></i>
-              )}
-              <p className="my-2" style={{ color: "var(--text_secondary)" }}>
-                {_id ? _id : "Please select file"}
-              </p>
-            </div>
-          )}
-        </button> */}
       </main>
     </div>
   );

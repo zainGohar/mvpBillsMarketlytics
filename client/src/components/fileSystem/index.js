@@ -493,68 +493,15 @@ const FileStructure = (props) => {
     try {
       let file_data =
         (await JSON.parse(localStorage.getItem(`file_data`))) || [];
+
+      console.log({ file_data });
+
       const file = file_data?.find((f) => f.file_id == id);
       await exportFile(JSON.parse(file?.file));
     } catch (error) {
       console.log("error", error);
     }
   };
-
-  // function exportFile(data) {
-  //   // const data = values?.data;
-
-  //   function flattenObject(ob) {
-  //     const toReturn = {};
-
-  //     for (const i in ob) {
-  //       if (!ob.hasOwnProperty(i)) continue;
-
-  //       if (typeof ob[i] === "object" && ob[i] !== null) {
-  //         const flatObject = flattenObject(ob[i]);
-  //         for (const x in flatObject) {
-  //           if (!flatObject.hasOwnProperty(x)) continue;
-  //           toReturn[i + "." + x] = flatObject[x];
-  //         }
-  //       } else {
-  //         toReturn[i] = ob[i];
-  //       }
-  //     }
-  //     return toReturn;
-  //   }
-
-  //   function transformData(data) {
-  //     const rows = [];
-
-  //     if (data.Electricity || data.Gas) {
-  //       for (const [key, value] of Object.entries(data)) {
-  //         rows.push(flattenObject(value));
-  //       }
-  //     } else {
-  //       rows.push(flattenObject(data));
-  //     }
-
-  //     const headers = Array.from(
-  //       new Set(rows.flatMap((row) => Object.keys(row)))
-  //     );
-
-  //     return { headers, rows };
-  //   }
-
-  //   const transformedData = transformData(data);
-
-  //   const csv = Papa.unparse({
-  //     fields: transformedData.headers,
-  //     data: transformedData.rows.map((row) =>
-  //       transformedData.headers.map((header) => row[header] || "")
-  //     ),
-  //   });
-
-  //   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-  //   const link = document.createElement("a");
-  //   link.href = URL.createObjectURL(blob);
-  //   link.download = "exported_data.csv";
-  //   link.click();
-  // }
 
   function exportFile(data) {
     function flattenObject(ob) {
