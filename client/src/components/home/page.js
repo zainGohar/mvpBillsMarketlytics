@@ -8,6 +8,6 @@ export default function Home() {
     (state) => state?.entities?.credentials?.signedIn
   );
   console.log({ signedIn });
-  
+
   return signedIn ? <Admin /> : <Visitor />;
 }

@@ -500,9 +500,63 @@ const FileStructure = (props) => {
     }
   };
 
-  function exportFile(data) {
-    // const data = values?.data;
+  // function exportFile(data) {
+  //   // const data = values?.data;
 
+  //   function flattenObject(ob) {
+  //     const toReturn = {};
+
+  //     for (const i in ob) {
+  //       if (!ob.hasOwnProperty(i)) continue;
+
+  //       if (typeof ob[i] === "object" && ob[i] !== null) {
+  //         const flatObject = flattenObject(ob[i]);
+  //         for (const x in flatObject) {
+  //           if (!flatObject.hasOwnProperty(x)) continue;
+  //           toReturn[i + "." + x] = flatObject[x];
+  //         }
+  //       } else {
+  //         toReturn[i] = ob[i];
+  //       }
+  //     }
+  //     return toReturn;
+  //   }
+
+  //   function transformData(data) {
+  //     const rows = [];
+
+  //     if (data.Electricity || data.Gas) {
+  //       for (const [key, value] of Object.entries(data)) {
+  //         rows.push(flattenObject(value));
+  //       }
+  //     } else {
+  //       rows.push(flattenObject(data));
+  //     }
+
+  //     const headers = Array.from(
+  //       new Set(rows.flatMap((row) => Object.keys(row)))
+  //     );
+
+  //     return { headers, rows };
+  //   }
+
+  //   const transformedData = transformData(data);
+
+  //   const csv = Papa.unparse({
+  //     fields: transformedData.headers,
+  //     data: transformedData.rows.map((row) =>
+  //       transformedData.headers.map((header) => row[header] || "")
+  //     ),
+  //   });
+
+  //   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  //   const link = document.createElement("a");
+  //   link.href = URL.createObjectURL(blob);
+  //   link.download = "exported_data.csv";
+  //   link.click();
+  // }
+
+  function exportFile(data) {
     function flattenObject(ob) {
       const toReturn = {};
 
@@ -525,8 +579,8 @@ const FileStructure = (props) => {
     function transformData(data) {
       const rows = [];
 
-      if (data.Electricity || data.Gas) {
-        for (const [key, value] of Object.entries(data)) {
+      if (Array.isArray(data)) {
+        for (const value of data) {
           rows.push(flattenObject(value));
         }
       } else {
